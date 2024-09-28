@@ -66,6 +66,28 @@
     }
   </css-doodle>
 
+  <audio id="background-music" autoplay loop>
+    <source src="camp.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <template>
+    <div>
+      <audio ref="backgroundMusic" autoplay loop>
+        <source src="path/to/camp.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+  </template>
+  
+  <script>
+  export default {
+    mounted() {
+      this.$refs.backgroundMusic.play();
+    }
+  };
+  </script>
+  
   <script src="https://unpkg.com/css-doodle@0.6.1/css-doodle.min.js"></script>
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script src="app.js"></script>

@@ -48,10 +48,10 @@
     @size: 100% 150%;
     position: absolute;
 
-    background: @m(100, (
+    background: @m(160, (
     linear-gradient(transparent, @p(
-    #FFFDE1@repeat(2, @p([0-9a-f])),
-    #FB3569@repeat(2, @p([0-9a-f]))
+    #63D2FF@repeat(2, @p([0-9a-f])),
+    #91972A@repeat(2, @p([0-9a-f]))
     ))
     @r(0%, 100%) @r(0%, 100%) /
     @r(1px) @r(23vmin)
@@ -59,7 +59,7 @@
     ));
 
     will-change: transform;
-    animation: f 50s linear calc(-50s / @size() * @i()) infinite;
+    animation: f 10s linear calc(-10s / @size() * @i()) infinite;
     @keyframes f {
     from { transform: translateY(-100%) }
     to { transform: translateY(100%) }

@@ -81,11 +81,17 @@
   </template>
   
   <script>
-  export default {
-    mounted() {
-      this.$refs.backgroundMusic.play();
-    }
-  };
+    
+    new Vue({
+      el: '#app',
+      data: {
+        message: 'Muzyka gra w tle!'
+      },
+      mounted() {
+       
+        this.$refs.backgroundMusic.play();
+      }
+    });
   </script>
   
   <script src="https://unpkg.com/css-doodle@0.6.1/css-doodle.min.js"></script>

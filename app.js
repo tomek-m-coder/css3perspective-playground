@@ -30,7 +30,6 @@ Vue.createApp({
         alert("CSS Copied to clipboard!");
       },
       playMusic() {
-        // Odtwarzaj muzykę po kliknięciu przycisku
         const music = document.getElementById("background-music");
         if (music) {
           music.play().catch((error) => {

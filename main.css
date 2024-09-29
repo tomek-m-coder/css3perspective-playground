@@ -11,15 +11,16 @@ html {
   padding: 0;
   margin: 0;
 }
+
 body {
   font-family: sans-serif;
   height: 100%;
   margin: 0;
   background: #702651;
   overflow: hidden;
-  display: flex; 
-  align-items: center; 
-  justify-content: center 
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 h2 {
@@ -28,6 +29,7 @@ h2 {
   font-size: 40px;
   margin: 20px;
 }
+
 main {
   display: flex;
   justify-content: space-around;
@@ -38,22 +40,27 @@ main {
   font-family: monospace, sans-serif;
   font-size: 22px;
 }
-main label{
+
+main label {
   display: block;
 }
+
 main input[type="range"] {
   display: block;
   margin-bottom: 10px;
   width: 200px;
 }
+
 section.settings {
   width: 50%;
   z-index: 2;
 }
+
 .box-container {
   padding: 50px;
   border: 1px solid #00ff95;
 }
+
 .box {
   width: 150px;
   height: 150px;
@@ -71,12 +78,14 @@ button {
   margin-right: 10px;
 }
 
-label{
+label {
   color: #eeff00;
 }
-.batton{
+
+.batton {
   box-shadow: 1px 4px 1px 2px rgb(25, 9, 61);
 }
-.batton:hover{
+
+.batton:hover {
   background-color: #a18cdf;
 }

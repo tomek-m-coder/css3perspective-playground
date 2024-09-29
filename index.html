@@ -1,7 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="pl">
 
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CSS3 Perspective Playground</title>
   <link rel="icon" type="image/png" href="img/favicon.png" />
   <link rel="stylesheet" type="text/css" href="main.css" />
@@ -19,7 +21,7 @@
           <label>rotateX: {{ rotateX }}deg; </label>
           <input type="range" min="-180" max="180" v-model="rotateX" />
 
-          <label>rotateY: {{rotateY}}deg; </label>
+          <label>rotateY: {{ rotateY }}deg; </label>
           <input type="range" min="-180" max="180" v-model="rotateY" />
 
           <label>rotateZ: {{rotateZ}}deg; </label>
@@ -27,6 +29,9 @@
 
           <button type="button" @click.prevent="reset" class="batton">Reset</button>
           <button type="button" @click.prevent="copy" class="batton">Copy</button>
+
+          <!-- Przycisk do odtwarzania muzyki -->
+          <button type="button" @click="playMusic" class="batton">Play Music</button>
         </div>
       </section>
       <section class="output">
@@ -35,51 +40,53 @@
         </div>
       </section>
     </main>
-
   </div>
 
   <css-doodle>
     :doodle {
-    @grid: 1x3 / 100vmax;
-    position: absolute;
-    top: 0; left: 0;
-    z-index: 0;
+      @grid: 1x3 / 100vmax;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
     }
 
     @size: 100% 150%;
     position: absolute;
 
     background: @m(160, (
-    linear-gradient(transparent, @p(
-    #63D2FF@repeat(2, @p([0-9a-f])),
-    #91972A@repeat(2, @p([0-9a-f]))
-    ))
-    @r(0%, 100%) @r(0%, 100%) /
-    @r(1px) @r(23vmin)
-    no-repeat
+      linear-gradient(transparent, @p(
+        #63D2FF@repeat(2, @p([0-9a-f])),
+        #91972A@repeat(2, @p([0-9a-f]))
+      ))
+      @r(0%, 100%) @r(0%, 100%) /
+      @r(1px) @r(23vmin)
+      no-repeat
     ));
 
     will-change: transform;
     animation: f 10s linear calc(-10s / @size() * @i()) infinite;
     @keyframes f {
-    from { transform: translateY(-100%) }
-    to { transform: translateY(100%) }
+      from {
+        transform: translateY(-100%)
+      }
+
+      to {
+        transform: translateY(100%)
+      }
     }
   </css-doodle>
 
-  <audio id="background-music" autoplay loop>
-    <source src="camp.mp3" type="audio/mpeg">
+  <!-- Audio element -->
+  <audio id="background-music" loop>
+    <source src="assets/camp.mp3" type="audio/mpeg" />
     Your browser does not support the audio element.
   </audio>
 
-  
-  
-  
-
-  
   <script src="https://unpkg.com/css-doodle@0.6.1/css-doodle.min.js"></script>
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-  <script type="module" src="app.js"></script>
+  <script src="app.js"></script>
+
 </body>
 
 </html>

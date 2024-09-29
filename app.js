@@ -6,7 +6,7 @@ Vue.createApp({
             rotateY: 0,
             rotateZ: 0,
             isMuted: false, // Stan do przechowywania stanu mute
-            hasInteracted: false // Flaga, aby sprawdzić, czy użytkownik już interagował
+            hasInteracted: false // Flaga do śledzenia interakcji użytkownika
         };
     },
     computed: {
@@ -40,7 +40,7 @@ Vue.createApp({
         },
         handleInteraction() {
             if (!this.hasInteracted) {
-                this.hasInteracted = true; // Ustaw flagę, aby nie odtwarzać więcej niż raz
+                this.hasInteracted = true; // Ustaw flagę, aby uniknąć wielokrotnego wywoływania
                 this.playMusic(); // Odtwórz muzykę po interakcji
             }
         },
@@ -59,7 +59,8 @@ Vue.createApp({
         // Nasłuchuj interakcji użytkownika na elemencie #app
         const appElement = document.getElementById('app');
         appElement.addEventListener('mousemove', this.handleInteraction);
-        appElement.addEventListener('touchstart', this.handleInteraction);
+        appElement.addEventListener('click', this.handleInteraction); // Dodaj nasłuchiwanie na kliknięcie
+        appElement.addEventListener('touchstart', this.handleInteraction); // Nasłuchuj dotknięć
 
         // Muzyka nie jest odtwarzana od razu, tylko po interakcji
     },
@@ -67,6 +68,7 @@ Vue.createApp({
         // Usuń nasłuchiwanie po odmontowaniu komponentu
         const appElement = document.getElementById('app');
         appElement.removeEventListener('mousemove', this.handleInteraction);
+        appElement.removeEventListener('click', this.handleInteraction); // Usuń nasłuchiwacz kliknięcia
         appElement.removeEventListener('touchstart', this.handleInteraction);
     }
 }).mount('#app');

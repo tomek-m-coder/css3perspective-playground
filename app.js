@@ -60,8 +60,7 @@ Vue.createApp({
         window.addEventListener('mousemove', this.handleInteraction);
         window.addEventListener('touchstart', this.handleInteraction);
 
-        // Próbuj odtworzyć muzykę od razu, ale może się nie udać
-        this.playMusic();
+        // Muzyka nie jest odtwarzana od razu, tylko po interakcji
     },
     beforeUnmount() {
         // Usuń nasłuchiwanie po odmontowaniu komponentu

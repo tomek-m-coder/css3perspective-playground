@@ -6,7 +6,7 @@ Vue.createApp({
             rotateY: 0,
             rotateZ: 0,
             isMuted: false, // Stan do przechowywania stanu mute
-            backgroundMusic: null // Referencja do elementu audio
+            hasInteracted: false // Flaga, aby sprawdzić, czy użytkownik już interagował
         };
     },
     computed: {
@@ -39,15 +39,16 @@ Vue.createApp({
             }
         },
         handleInteraction() {
-            if (!this.backgroundMusic) {
-                this.backgroundMusic = this.$refs.backgroundMusic; // Użyj referencji
+            if (!this.hasInteracted) {
+                this.hasInteracted = true; // Ustaw flagę, aby nie odtwarzać więcej niż raz
                 this.playMusic(); // Odtwórz muzykę po interakcji
             }
         },
         async playMusic() {
-            if (this.backgroundMusic) {
+            const audio = this.$refs.backgroundMusic;
+            if (audio) {
                 try {
-                    await this.backgroundMusic.play();
+                    await audio.play(); // Próba odtworzenia muzyki
                 } catch (err) {
                     console.error("Playback failed:", err);
                 }
@@ -59,9 +60,8 @@ Vue.createApp({
         window.addEventListener('mousemove', this.handleInteraction);
         window.addEventListener('touchstart', this.handleInteraction);
 
-        // Automatyczne przypisanie referencji audio
-        this.backgroundMusic = this.$refs.backgroundMusic;
-        this.playMusic(); // Próbuj odtworzyć muzykę, może się nie udać, ale niech będzie
+        // Próbuj odtworzyć muzykę od razu, ale może się nie udać
+        this.playMusic();
     },
     beforeUnmount() {
         // Usuń nasłuchiwanie po odmontowaniu komponentu

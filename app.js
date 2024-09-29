@@ -28,7 +28,7 @@ Vue.createApp({
         this.rotateX = 0;
         this.rotateY = 0;
         this.rotateZ = 0;
-        this.size = 150;
+
         if (this.userInteracted) {
           const audio = this.$refs.backgroundMusic;
           if (audio) {
@@ -57,6 +57,7 @@ Vue.createApp({
     mounted() {
       const audio = this.$refs.backgroundMusic;
 
+      // Add event listeners for user interaction
       window.addEventListener('click', this.handleUserInteraction);
       window.addEventListener('mousemove', this.handleUserInteraction);
       window.addEventListener('touchstart', this.handleUserInteraction);
@@ -68,6 +69,7 @@ Vue.createApp({
       }
     },
     beforeUnmount() {
+      // Clean up event listeners
       window.removeEventListener('click', this.handleUserInteraction);
       window.removeEventListener('mousemove', this.handleUserInteraction);
       window.removeEventListener('touchstart', this.handleUserInteraction);

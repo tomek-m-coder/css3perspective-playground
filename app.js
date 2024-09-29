@@ -31,6 +31,10 @@ Vue.createApp({
         let text = `transform:${this.box.transform};`
        await navigator.clipboard.writeText(text)
        alert("CSS Copied to clipboard!")
-    }
+    },
+    mounted:()=> {
+        this.$refs.backgroundMusic.play();
+       }
    }
+   
 }).mount('#app')

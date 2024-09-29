@@ -4,7 +4,8 @@ Vue.createApp({
         perspective: 100,
         rotateX: 0,
         rotateY: 0,
-        rotateZ: 0
+        rotateZ: 0,
+        isMuted: false, // Stan do przechowywania stanu mute
       };
     },
     computed: {
@@ -29,14 +30,21 @@ Vue.createApp({
         await navigator.clipboard.writeText(text);
         alert("CSS Copied to clipboard!");
       },
-      playMusic() {
-        const music = document.getElementById("background-music");
-        if (music) {
-          music.play().catch((error) => {
-            console.error("Odtwarzanie audio nie powiodło się:", error);
-          });
+      toggleMute() {
+        const audio = this.$refs.backgroundMusic; // Referencja do elementu audio
+        if (audio) {
+          this.isMuted = !this.isMuted; // Zmiana stanu mute
+          audio.muted = this.isMuted; // Mute/Unmute audio
         }
       }
+    },
+    mounted() {
+      const audio = this.$refs.backgroundMusic;
+      if (audio) {
+        audio.play().catch(err => {
+          console.error("Audio playback failed:", err);
+        });
+      }
     }
-  }).mount("#app");
+  }).mount('#app');
   

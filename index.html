@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html>
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CSS3 Perspective Playground</title>
   <link rel="icon" type="image/png" href="img/favicon.png" />
   <link rel="stylesheet" type="text/css" href="main.css" />
@@ -29,9 +27,9 @@
 
           <button type="button" @click.prevent="reset" class="batton">Reset</button>
           <button type="button" @click.prevent="copy" class="batton">Copy</button>
-
-          <!-- Przycisk do odtwarzania muzyki -->
-          <button type="button" @click.prevent="playMusic" class="batton">Play Music</button>
+          <button type="button" @click.prevent="toggleMute" class="batton button-mute">
+            {{ isMuted ? 'Unmute Audio' : 'Mute Audio' }}
+          </button>
         </div>
       </section>
       <section class="output">
@@ -40,14 +38,19 @@
         </div>
       </section>
     </main>
+
+    <audio ref="backgroundMusic" autoplay loop>
+      <source src="assets/camp.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+
   </div>
 
   <css-doodle>
     :doodle {
       @grid: 1x3 / 100vmax;
       position: absolute;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
       z-index: 0;
     }
 
@@ -67,26 +70,14 @@
     will-change: transform;
     animation: f 10s linear calc(-10s / @size() * @i()) infinite;
     @keyframes f {
-      from {
-        transform: translateY(-100%)
-      }
-
-      to {
-        transform: translateY(100%)
-      }
+      from { transform: translateY(-100%) }
+      to { transform: translateY(100%) }
     }
   </css-doodle>
 
-  <!-- Audio element -->
-  <audio id="background-music" loop>
-    <source src="assets/camp.mp3" type="audio/mpeg" />
-    Your browser does not support the audio element.
-  </audio>
-
   <script src="https://unpkg.com/css-doodle@0.6.1/css-doodle.min.js"></script>
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-  <script src="app.js"></script>
-
+  <script type="module" src="app.js"></script>
 </body>
 
 </html>

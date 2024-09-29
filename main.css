@@ -89,3 +89,8 @@ label {
 .batton:hover {
   background-color: #a18cdf;
 }
+.button-mute {
+  width: 150px; 
+  text-align: center;
+  margin-top:10px;
+}

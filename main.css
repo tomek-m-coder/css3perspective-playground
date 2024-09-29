@@ -58,13 +58,13 @@ section.settings {
 
 .box-container {
   padding: 50px;
-  border: 1px solid #00ff95;
+  border: 1px solid #00ff95 ;
 }
 
 .box {
   width: 150px;
   height: 150px;
-  background: #5af5b4;
+  background:linear-gradient(#5af5b4,#2162ee ) ;
 }
 
 button {

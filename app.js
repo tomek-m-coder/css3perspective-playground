@@ -56,15 +56,17 @@ Vue.createApp({
         }
     },
     mounted() {
-        // Nasłuchuj interakcji użytkownika
-        window.addEventListener('mousemove', this.handleInteraction);
-        window.addEventListener('touchstart', this.handleInteraction);
+        // Nasłuchuj interakcji użytkownika na elemencie #app
+        const appElement = document.getElementById('app');
+        appElement.addEventListener('mousemove', this.handleInteraction);
+        appElement.addEventListener('touchstart', this.handleInteraction);
 
         // Muzyka nie jest odtwarzana od razu, tylko po interakcji
     },
     beforeUnmount() {
         // Usuń nasłuchiwanie po odmontowaniu komponentu
-        window.removeEventListener('mousemove', this.handleInteraction);
-        window.removeEventListener('touchstart', this.handleInteraction);
+        const appElement = document.getElementById('app');
+        appElement.removeEventListener('mousemove', this.handleInteraction);
+        appElement.removeEventListener('touchstart', this.handleInteraction);
     }
 }).mount('#app');

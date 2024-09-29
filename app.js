@@ -5,17 +5,20 @@ Vue.createApp({
         rotateX: 0,
         rotateY: 0,
         rotateZ: 0,
+        size: 150, // Default size for the rectangle
         isMuted: false,
-        userInteracted: false, // Flag to track user interaction
+        userInteracted: false,
       };
     },
     computed: {
-      box() {
+      boxStyle() {
         return {
           transform: `perspective(${this.perspective}px)
           rotateX(${this.rotateX}deg)
           rotateY(${this.rotateY}deg)
-          rotateZ(${this.rotateZ}deg)`
+          rotateZ(${this.rotateZ}deg)`,
+          width: `${this.size}px`,  // Dynamic width
+          height: `${this.size}px`  // Dynamic height
         };
       }
     },
@@ -25,8 +28,7 @@ Vue.createApp({
         this.rotateX = 0;
         this.rotateY = 0;
         this.rotateZ = 0;
-
-        // Play music if the user has interacted
+        this.size = 150;
         if (this.userInteracted) {
           const audio = this.$refs.backgroundMusic;
           if (audio) {
@@ -37,7 +39,7 @@ Vue.createApp({
         }
       },
       async copy() {
-        let text = `transform:${this.box.transform};`;
+        let text = `transform:${this.boxStyle.transform};`;
         await navigator.clipboard.writeText(text);
         alert("CSS Copied to clipboard!");
       },
@@ -49,13 +51,12 @@ Vue.createApp({
         }
       },
       handleUserInteraction() {
-        this.userInteracted = true; // Set the flag to true on user interaction
+        this.userInteracted = true;
       }
     },
     mounted() {
       const audio = this.$refs.backgroundMusic;
 
-      // Add event listeners for user interaction
       window.addEventListener('click', this.handleUserInteraction);
       window.addEventListener('mousemove', this.handleUserInteraction);
       window.addEventListener('touchstart', this.handleUserInteraction);
@@ -67,7 +68,6 @@ Vue.createApp({
       }
     },
     beforeUnmount() {
-      // Clean up event listeners when the component is destroyed
       window.removeEventListener('click', this.handleUserInteraction);
       window.removeEventListener('mousemove', this.handleUserInteraction);
       window.removeEventListener('touchstart', this.handleUserInteraction);

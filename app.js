@@ -28,6 +28,7 @@ Vue.createApp({
         this.rotateX = 0;
         this.rotateY = 0;
         this.rotateZ = 0;
+        this.size = 150; // Reset size to 150px
 
         if (this.userInteracted) {
           const audio = this.$refs.backgroundMusic;

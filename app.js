@@ -5,7 +5,7 @@ Vue.createApp({
         rotateX: 0,
         rotateY: 0,
         rotateZ: 0,
-        size: 150, // Default size for the rectangle
+        size: 150, 
         isMuted: false,
         userInteracted: false,
       };
@@ -28,7 +28,7 @@ Vue.createApp({
         this.rotateX = 0;
         this.rotateY = 0;
         this.rotateZ = 0;
-        this.size = 150; // Reset size to 150px
+        this.size = 150; 
 
         if (this.userInteracted) {
           const audio = this.$refs.backgroundMusic;
